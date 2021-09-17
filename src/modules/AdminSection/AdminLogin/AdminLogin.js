@@ -102,11 +102,9 @@ export default class AdminLogin extends Component {
                         <div className="DivFormAdminLogin">
                             <form method="post">
                                 <div className="form-group">
-                                    <label ><h5>Your Login ID Number 000001500000</h5></label>
                                     <input type="text" onChange={(e) => this.OnChangeLoginPassword(e)} className="form-control" />
                                 </div>
                                 <div className="form-group" style={{ marginTop: "5%" }}>
-                                    <label><h5>Your Login Password Web-Blog-Password</h5></label>
                                     <input type="password" onChange={(e) => this.OnChangeLoginID(e)} className="form-control" />
                                 </div>
                                 <button type="submit" onClick={(e) => this.OnClickSubmitButton(e)} className="btn btn-primary" style={{ marginTop: "5%" }}>Login</button>
