@@ -58,7 +58,7 @@ export default class AdminLogin extends Component {
         }
     }
     HelperFunctionForAxios(res) {
-        alert(res.data)
+        // alert(res.data)
         if (res.data === "0015") {
             alert("Enter the Code Send To Your Email!");
             this.setState({
