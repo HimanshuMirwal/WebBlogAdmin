@@ -12,6 +12,8 @@ import DisplayFeedback from "./DisplayFeedback";
 import DisplayPassword from "./DisplayPassword";
 
 import About from "./About";
+import Notice from "./Notice";
+import NoticeDisplay from "./NoticeDisplay";
 export default class AdminDashboard extends Component {
     constructor(props) {
         super(props);
@@ -110,11 +112,11 @@ export default class AdminDashboard extends Component {
             AddRecord: false
         })
     }
-    OnLogout(data){
+    OnLogout(data) {
         localStorage.removeItem("Auth")
         localStorage.removeItem("AdminAuth")
         localStorage.clear();
-        window.location.href="/"
+        window.location.href = "/"
     }
     findClick(data) {
         switch (data) {
@@ -137,18 +139,26 @@ export default class AdminDashboard extends Component {
                 this.setState({ Clicked: data })
                 break;
             case "DisplayFeedback":
-                this.setState({Clicked:data})
-                break;  
-            case "About":
-                this.setState({Clicked:data})
-            break; 
-            case "DisplayPassword":
-                this.setState({Clicked:data})
+                this.setState({ Clicked: data })
                 break;
+            case "About":
+                this.setState({ Clicked: data })
+                break;
+            case "DisplayPassword":
+                this.setState({ Clicked: data })
+                break;
+            case "AddNotice":
+                this.setState({ Clicked: data })
+                break;
+                
+            case "NoticeDisplay":
+                this.setState({ Clicked: data })
+                break;
+
             default: ;
         }
     }
-    
+
     render() {
         if (this.state.AdminDashboardAuth === false) {
             return <Redirect to="/login" />
@@ -156,67 +166,83 @@ export default class AdminDashboard extends Component {
         switch (this.state.Clicked) {
             case "AddTittle":
                 return (<div className="main">
-                    <SideBar findClick={this.findClick} Logout={this.OnLogout}/>
+                    <SideBar findClick={this.findClick} Logout={this.OnLogout} />
                     <div className="InfoDiv">
                         <TitleAdder />
                     </div>
                 </div>)
             case "AddSubTittle":
                 return (<div className="main">
-                    <SideBar findClick={this.findClick} Logout={this.OnLogout}/>
+                    <SideBar findClick={this.findClick} Logout={this.OnLogout} />
                     <div className="InfoDiv">
                         <SubTitleAdder />
                     </div>
                 </div>)
             case "AddDescription":
                 return (<div className="main">
-                    <SideBar findClick={this.findClick} Logout={this.OnLogout}/>
+                    <SideBar findClick={this.findClick} Logout={this.OnLogout} />
                     <div className="InfoDiv">
                         <PlaceAdder />
                     </div>
                 </div>)
+            case "AddNotice":
+                return (<div className="main">
+                    <SideBar findClick={this.findClick} Logout={this.OnLogout} />
+                    <div className="InfoDiv">
+                        <Notice />
+                    </div>
+                </div>)
             case "DisplayTittle":
                 return (<div className="main">
-                    <SideBar findClick={this.findClick} Logout={this.OnLogout}/>
+                    <SideBar findClick={this.findClick} Logout={this.OnLogout} />
                     <div className="InfoDiv">
                         <DisplayTitle />
                     </div>
                 </div>)
+            
             case "DisplaySubTittle":
                 return (<div className="main">
-                    <SideBar findClick={this.findClick} Logout={this.OnLogout}/>
+                    <SideBar findClick={this.findClick} Logout={this.OnLogout} />
                     <div className="InfoDiv">
-                        <DisplaySubTittle/>
+                        <DisplaySubTittle />
                     </div>
                 </div>)
             case "DisplayDescription":
                 return (<div className="main">
-                    <SideBar findClick={this.findClick} Logout={this.OnLogout}/>
+                    <SideBar findClick={this.findClick} Logout={this.OnLogout} />
                     <div className="InfoDiv">
-                        <DisplayDescription/>
+                        <DisplayDescription />
                     </div>
                 </div>)
             case "DisplayFeedback":
                 return (<div className="main">
-                    <SideBar findClick={this.findClick} Logout={this.OnLogout}/>
+                    <SideBar findClick={this.findClick} Logout={this.OnLogout} />
                     <div className="InfoDiv">
-                        <DisplayFeedback/>
+                        <DisplayFeedback />
                     </div>
                 </div>)
             case "DisplayPassword":
                 return (<div className="main">
-                <SideBar findClick={this.findClick} Logout={this.OnLogout} />
-                <div className="InfoDiv">
-                    <DisplayPassword/>
-                </div>
-            </div>)
+                    <SideBar findClick={this.findClick} Logout={this.OnLogout} />
+                    <div className="InfoDiv">
+                        <DisplayPassword />
+                    </div>
+                </div>)
+            case "NoticeDisplay":
+                return (<div className="main">
+                    <SideBar findClick={this.findClick} Logout={this.OnLogout} />
+                    <div className="InfoDiv">
+                        <NoticeDisplay />
+                    </div>
+                </div>)
             case "About":
                 return (<div className="main">
-                <SideBar findClick={this.findClick} Logout={this.OnLogout} />
-                <div className="InfoDiv">
-                    <About/>
-                </div>
-            </div>)
+                    <SideBar findClick={this.findClick} Logout={this.OnLogout} />
+                    <div className="InfoDiv">
+                        <About />
+                    </div>
+                </div>)
+            
             default: return (<div className="main">
                 <SideBar findClick={this.findClick} Logout={this.OnLogout} />
                 <div className="InfoDiv"><h4>Not found</h4></div>
@@ -227,20 +253,22 @@ export default class AdminDashboard extends Component {
 
 const SideBar = function (props) {
     return (<div className="container-fluid">
-        <nav id="navbarNavDropdown" style={{overflowY:"scroll"}} class="collapse d-lg-block sidebar collapse">
+        <nav id="navbarNavDropdown" style={{ overflowY: "scroll" }} class="collapse d-lg-block sidebar collapse">
             <div class="position-sticky">
                 <hr style={{ color: "#fff" }} />
                 <ul className="NavAdminLink">
                     <li className="NavAdminLinkItem" onClick={() => props.findClick("AddTittle")}>Add Tittle</li>
                     <li className="NavAdminLinkItem" onClick={() => props.findClick("AddSubTittle")}>Add Sub Tittle</li>
                     <li className="NavAdminLinkItem" onClick={() => props.findClick("AddDescription")}>Add Description</li>
+                    <li className="NavAdminLinkItem" onClick={() => props.findClick("AddNotice")}>Add Notice</li>
                     <li className="NavAdminLinkItem" onClick={() => props.findClick("DisplayTittle")}>Display Tittle</li>
                     <li className="NavAdminLinkItem" onClick={() => props.findClick("DisplaySubTittle")}>Display Sub Tittle</li>
                     <li className="NavAdminLinkItem" onClick={() => props.findClick("DisplayDescription")}>Display Description</li>
                     <li className="NavAdminLinkItem" onClick={() => props.findClick("DisplayFeedback")}>Display Feedback</li>
                     <li className="NavAdminLinkItem" onClick={() => props.findClick("DisplayPassword")}>Display Password</li>
+                    <li className="NavAdminLinkItem" onClick={() => props.findClick("NoticeDisplay")}>Display Notice</li>
                     <li className="NavAdminLinkItem" onClick={() => props.findClick("About")}>Display About</li>
-                    <li   style={{ paddingTop: "15px" }}>
+                    <li style={{ paddingTop: "15px" }}>
                         {/* <Link > */}
                         <input onClick={() => props.Logout("data")} type="button" className="btn btn-lg btn-primary btn-block" style={{ width: "100%" }} value="Log Out" />
                         {/* </Link> */}
