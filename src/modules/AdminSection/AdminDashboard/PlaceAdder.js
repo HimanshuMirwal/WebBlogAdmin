@@ -235,7 +235,7 @@ export default class PlaceAdder extends Component {
                                 }
                             </select>
                             <label>city-name</label>
-                            <input type="text" name="city" value={this.state.city} onChange={(e) => this.OnChangeCity(e)} className="form-control" />
+                            <input type="text" name="city" placeholder="optional" value={this.state.city} onChange={(e) => this.OnChangeCity(e)} className="form-control" />
                             <label>place-name</label>
                             <input type="text" name="TourPlace" value={this.state.TourPlace} onChange={(e) => this.OnChangeTourPlace(e)} className="form-control" />
                             <label>place-description</label>
@@ -266,7 +266,7 @@ const ImageElement = function (props) {
     const TextImg = props.value.length;
     return Array.apply(1, Array(6)).map(function (x, i) {
         return <div class="row" key={i} style={{ margin: "2% auto" }}>
-            <input type="text" id={"TextImage" + i} value={TextImg === 0 ? "" : props.value[i]} onChange={(e) => props.onChangeImageText(e, i)} style={{ width: "50%", float: "left" }} className="form-control" placeholder={"insert image " + (i + 1) + " link here"} />
+            <input type="text" id={"TextImage" + i}  value={TextImg === 0 ? "" : props.value[i]} onChange={(e) => props.onChangeImageText(e, i)} style={{ width: "50%", float: "left" }} className="form-control" placeholder={"insert image " + (i + 1) + " link here"} />
             <img src={TextImg === 0 ? "" : props.value[i]} id={"DisplayImage" + i} style={{ height: "100%", width: "50%", backgroundPosition: "auto", float: "right" }} className="form-control" alt="not inserted yet" />
         </div>
     })

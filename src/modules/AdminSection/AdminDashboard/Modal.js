@@ -94,7 +94,7 @@ export default class Modal extends Component {
         }, []);
         const duplicateLength = duplicateArray.length;
         if ( duplicateLength === 0){
-            if (count === 6) {
+            if (count === 1) {
                 if (city.length > 0 && PlaceToTour.length > 0 && TourPlaceDescription.length > 0) {
                     Axios.post("https://obscure-lake-21900.herokuapp.com/place/update", data)
                         .then(res => {
@@ -136,6 +136,9 @@ export default class Modal extends Component {
                         <label>place-description</label>
                         <textarea onChange={(e) => this.OnChangeTourPlaceDescription(e)} rows="10" name="TourPlaceDescription" value={this.state.TourPlaceDescription} className="form-control" >
                         </textarea>
+                        <div style={{ width: "100%"}} class="alert alert-info alert-dismissible fade show" role="alert">
+                                <strong>Important : One image link is compulsory.</strong>
+                            </div>
                         <div className="row">
                         {
 
