@@ -94,7 +94,7 @@ export default class Modal extends Component {
         }, []);
         const duplicateLength = duplicateArray.length;
         if ( duplicateLength === 0){
-            if (count === 1) {
+            if (count  !== 0) {
                 if (city.length > 0 && PlaceToTour.length > 0 && TourPlaceDescription.length > 0) {
                     Axios.post("https://obscure-lake-21900.herokuapp.com/place/update", data)
                         .then(res => {
