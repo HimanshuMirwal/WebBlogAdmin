@@ -137,7 +137,7 @@ export default class PlaceAdder extends Component {
             console.log("duplicateArray" + duplicateArray.length)
             console.log(count);
             if (count === 1) {
-                if (city.length > 0 && PlaceToTour.length > 0 && TourPlaceDescription.length > 0) {
+                if (PlaceToTour.length > 0 && TourPlaceDescription.length > 0) {
                     Axios.post("https://obscure-lake-21900.herokuapp.com/place/add/", data)
                         .then(res => {
                             console.log(res.data);
