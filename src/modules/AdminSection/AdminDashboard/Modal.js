@@ -32,10 +32,8 @@ export default class Modal extends Component {
         }
         const len = this.props.match.params.id.length;
         const data = this.props.match.params.id.substring(1, len);
-        console.log(data);
         Axios.get("https://obscure-lake-21900.herokuapp.com/place/getplace/:" + data)
             .then((res) => {
-                console.log(res.data.imageLinksArray);
                 this.setState({
                     TittleName: res.data.TittleName,
                     SubTittleName: res.data.subtittleName,
@@ -45,22 +43,39 @@ export default class Modal extends Component {
                     id: res.data._id,
                     imageLinksArray: res.data.imageLinksArray.map(data => data)
                 })
-                console.log(res.data)
             })
             .catch(Err => alert(Err));
     }
     onChangeImageText(event, indexPara) {
-        const Data = event.target.value;
-        this.setState(prevState => ({
-            imageLinksArray: [...prevState.imageLinksArray.map((data, index) => {
-                if (index === indexPara) {
-                    return Data
-                } else {
-                    return data
-                }
-            })]
-        }))
+        if(event.code !== "Space"){
+        const Data= event.target.value;
+        console.log()
+        if(this.state.imageLinksArray.length < indexPara+1){
+            const tempData = this.state.imageLinksArray;
+            tempData.push(Data);
+            this.setState({
+                imageLinksArray:tempData
+            })
+        }else{
+            this.setState(prevState => ({
+                imageLinksArray: [...prevState.imageLinksArray.map((data, index) => {
+                    if (index === indexPara) {
+                        return Data
+                    } else {
+                        return data
+                    }
+                })]
+            }))
+        }
         document.getElementById("DisplayImage" + indexPara).src = event.target.value;
+        document.getElementById("StringLength" + indexPara).innerHTML = event.target.value.length;
+
+    }else{
+         alert("Please don't use spaces and it has discarded now.")
+         document.getElementById("TextImage" + indexPara).value ="";
+         document.getElementById("StringLength" + indexPara).innerHTML = event.target.value.length;
+
+     }
     }
    
     OnChangeCity(e) {
@@ -88,14 +103,15 @@ export default class Modal extends Component {
         const TourPlaceDescription = this.state.TourPlaceDescription;
         const imageLinksArray = this.state.imageLinksArray;
         let count = this.state.imageLinksArray.length;
-
-        const duplicateArray = imageLinksArray.reduce(function (acc, el, i, arr) {
+        const EmptyLinks = imageLinksArray.filter(data => data!=="");
+        data.imageLinksArray=EmptyLinks;
+        const duplicateArray = EmptyLinks.reduce(function (acc, el, i, arr) {
             if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el); return acc;
         }, []);
         const duplicateLength = duplicateArray.length;
-        if ( duplicateLength === 0){
+        if( duplicateLength === 0){
             if (count  !== 0) {
-                if (city.length > 0 && PlaceToTour.length > 0 && TourPlaceDescription.length > 0) {
+                if (PlaceToTour.length > 0 && TourPlaceDescription.length > 0) {
                     Axios.post("https://obscure-lake-21900.herokuapp.com/place/update", data)
                         .then(res => {
                             alert(res.data);
@@ -109,7 +125,7 @@ export default class Modal extends Component {
                 alert("Please insert The Image links .")
             }
         }else{
-            alert("Duplicate image links are present.")
+            alert("Duplicate or empty image links are present.")
         }
 
     }
@@ -130,7 +146,7 @@ export default class Modal extends Component {
                             <option value={this.state.SubTittleName}>{this.state.SubTittleName}</option>
                         </select>
                         <label>city-name</label>
-                        <input onChange={(e) => this.OnChangeCity(e)} type="text" name="city" value={this.state.city} className="form-control" />
+                        <input  placeholder="optional, you ca use blank spaces instead of words" onChange={(e) => this.OnChangeCity(e)} type="text" name="city" value={this.state.city} className="form-control" />
                         <label>place-name</label>
                         <input onChange={(e) => this.OnChangeTourPlace(e)} type="text" name="TourPlace" value={this.state.TourPlace} className="form-control" />
                         <label>place-description</label>
@@ -141,17 +157,30 @@ export default class Modal extends Component {
                             </div>
                         <div className="row">
                         {
-
-                            this.state.imageLinksArray.map((user, index) => {
-                                return (<div className="card" style={{ margin: "2%",width: "46%" }}>
-                                        <img src={user} id={"DisplayImage" + index} className="card-img-top" style={{margin:"1%", backgroundPosition: "auto" }}  alt="invalid link" />
+                            
+                            Array.apply(1, Array(6)).map((user, index) => {
+                               const CurrentData  =  this.state.imageLinksArray[index];
+                                if(CurrentData){
+                                     return (<div className="card" style={{ margin: "2%",width: "46%" }}>
+                                        <img src={CurrentData} id={"DisplayImage" + index} className="card-img-top" style={{margin:"1%", backgroundPosition: "auto" }}  alt="invalid link" />
+                                        <span id={"StringLength" + index}>{CurrentData.length}</span>
                                         <div className="card-body" >
                                             <h4 className="card-title">{index + 1}.image</h4>
-                                            <textarea id={"TextImage" + index} rows="5" className="card-text" style={{width:"100%"}} onChange={(e) => this.onChangeImageText(e, index)} value={user} />
+                                            <textarea id={"TextImage" + index} rows="5" className="card-text" style={{width:"100%"}} onChange={(e) => this.onChangeImageText(e, index)} onKeyPress={(e) => this.onChangeImageText(e, index)} value={CurrentData} />
                                         </div>
-                                </div>)
+                                </div>) 
+                                }else{
+                                    return (<div className="card" style={{ margin: "2%",width: "46%" }}>
+                                        <img src="" id={"DisplayImage" + index} className="card-img-top" style={{margin:"1%", backgroundPosition: "auto" }}  alt="invalid link" />
+                                        <span id={"StringLength" + index}></span>
+                                        <div className="card-body" >
+                                            <h4 className="card-title">{index + 1}.image</h4>
+                                            <textarea id={"TextImage" + index} rows="5" className="card-text" style={{width:"100%"}} onChange={(e) => this.onChangeImageText(e, index)} onKeyPress={(e) => this.onChangeImageText(e, index)}  />
+                                        </div>
+                                </div>) 
+                                }
+                                
                             })
-
                         }
                         </div>
                     </div>
