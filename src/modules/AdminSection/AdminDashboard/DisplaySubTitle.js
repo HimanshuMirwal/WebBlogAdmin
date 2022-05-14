@@ -18,7 +18,7 @@ export default class DisplaySubTittle extends Component {
 
     }
     componentDidMount() {
-        Axios.get("https://obscure-lake-21900.herokuapp.com/subtittle/getsubtitle/")
+        Axios.get("subtittle/getsubtitle/")
             .then((res) => {
                 // console.log(res)
                 this.setState({
@@ -28,7 +28,7 @@ export default class DisplaySubTittle extends Component {
             .catch(Err => console.log(Err));
     }
     OnRefreshData() {
-        Axios.get("https://obscure-lake-21900.herokuapp.com/subtittle/getsubtitle/").then((res) => {
+        Axios.get("subtittle/getsubtitle/").then((res) => {
             // console.log(res)
             this.setState({
                 SubTitleArray: res.data
@@ -41,7 +41,7 @@ export default class DisplaySubTittle extends Component {
         })
     }
     OnClickDeleteDataForSubtitle(value, NameOfSubtitle) {
-        Axios.post("https://obscure-lake-21900.herokuapp.com/subtittle/delete/" + value, { NameOfSubtitle: NameOfSubtitle })
+        Axios.post("subtittle/delete/" + value, { NameOfSubtitle: NameOfSubtitle })
             .then(res => {
                 this.OnRefreshData();
                 console.log(res)
@@ -62,7 +62,7 @@ export default class DisplaySubTittle extends Component {
     }
     OnClickSubtitleChangeValue(value, index) {
         const data = document.getElementById(value).value;
-        Axios.post("https://obscure-lake-21900.herokuapp.com/subtittle/update/" + value, { SubTitleValue: this.state.SubtitleChangedValue })
+        Axios.post("subtittle/update/" + value, { SubTitleValue: this.state.SubtitleChangedValue })
             .then((res) => {
                 console.log(res.data + " if not then Click Refresh Button to see Results.")
                 this.OnRefreshData();
@@ -78,7 +78,7 @@ export default class DisplaySubTittle extends Component {
             SubtitleChangedValue: ""
         })
 
-        Axios.post("https://obscure-lake-21900.herokuapp.com/place/updateSubtitle/" + this.state.SubtitleChangedValue, { DataToSend: data })
+        Axios.post("place/updateSubtitle/" + this.state.SubtitleChangedValue, { DataToSend: data })
             .then(res => console.log(res.data))
             .catch(Err => console.log(Err));
     }

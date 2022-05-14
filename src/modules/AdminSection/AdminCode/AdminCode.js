@@ -21,7 +21,7 @@ export default class AdminLogin extends Component {
 
     OnClickSubmitButton() {
         const data = this.state.code;
-        Axios.post("https://obscure-lake-21900.herokuapp.com/code/sendcode/", { dataValue: data }).then((res) => {
+        Axios.post("code/sendcode/", { dataValue: data }).then((res) => {
             if (res.data === "00015") {
                 alert("OK!!!!");
                 localStorage.setItem('AdminAuth', true);

@@ -16,7 +16,7 @@ class About extends React.Component {
         this.changeAboutImage = this.changeAboutImage.bind(this);
     }
     componentDidMount() {
-        Axios.get("https://obscure-lake-21900.herokuapp.com/About/getabout")
+        Axios.get("About/getabout")
             .then(res => this.setState({
                 About: res.data.about,
                 ID: res.data._id,
@@ -34,7 +34,7 @@ class About extends React.Component {
     OnSubmit() {
         const len = this.state.About.length;
         if (len > 0) {
-            Axios.post("https://obscure-lake-21900.herokuapp.com/About/postabout", { ID: this.state.ID, About: this.state.About, image: this.state.image })
+            Axios.post("About/postabout", { ID: this.state.ID, About: this.state.About, image: this.state.image })
                 .then(res => {
                     console.log(res.data)
                     document.getElementById("AboutDisplay").innerHTML=this.state.DivSuccessUpdate;

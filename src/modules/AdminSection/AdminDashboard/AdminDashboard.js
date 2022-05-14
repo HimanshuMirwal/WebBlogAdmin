@@ -48,7 +48,7 @@ export default class AdminDashboard extends Component {
     }
     componentDidMount() {
         window.addEventListener('beforeunload', this.handleUnload);
-        Axios.get("https://obscure-lake-21900.herokuapp.com/tittle/gettitle/")
+        Axios.get("tittle/gettitle/")
             .then(
                 (result) => {
                     this.setState({
@@ -60,7 +60,7 @@ export default class AdminDashboard extends Component {
                     console.log(error);
                 }
             )
-        Axios.get("https://obscure-lake-21900.herokuapp.com/subtittle/getsubtitle/")
+        Axios.get("subtittle/getsubtitle/")
             .then((res) => {
                 // console.log(res)
                 this.setState({
