@@ -10,7 +10,7 @@ export default class AdminLogin extends Component {
         this.state = {
             LoginID: "",
             LoginPassword: "",
-            count:0
+            auth:false
         }
         this.OnChangeLoginID = this.OnChangeLoginID.bind(this);
         this.OnChangeLoginPassword = this.OnChangeLoginPassword.bind(this);
@@ -45,14 +45,11 @@ export default class AdminLogin extends Component {
         }
         if (IDLen < 9 && PassLen < 9) {
             alert("Error");
-            const LocalCount = this.state.count+1;
-            this.setState({
-                count: LocalCount
-            })
         } else {
-            Axios.post("http://obscure-lake-21900.herokuapp.com/admin/get/", Data)
+            Axios.post("https://obscure-lake-21900.herokuapp.com/admin/get/", Data)
                 .then((res) => {
                     this.HelperFunctionForAxios(res);
+                    console.log(res)
                 })
                 .catch(Err => console.log(Err));
         }
@@ -66,19 +63,15 @@ export default class AdminLogin extends Component {
             });
         } 
         else {
-            // alert(res.data + " ID or Password incorrect.")
-            document.getElementById("ttt").style="backgorund:red"
-
-            const LocalCount = this.state.count+1;
+            alert(res.data + " ID or Password incorrect.")
             this.setState({
                 auth: false,
-                count: LocalCount
             })
         }
     }
     getPassToMail(){
         alert("Login Credentials are send to Admin mail.")
-        Axios.get("http://obscure-lake-21900.herokuapp.com/Password/sendpasswordtome")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/Password/sendpasswordtome")
         .then((res) => {
             console.log("Login Credentials are send to Admin mail.")
         })
@@ -111,6 +104,7 @@ export default class AdminLogin extends Component {
                                 <div className="form-group" style={{ marginTop: "5%" }}>                                    
                                 </div>
                             </form>
+                            <text onClick={()=>this.getPassToMail()}>Send Credentials</text>
                         </div>
                     </div>
                 </div>
