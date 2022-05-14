@@ -46,7 +46,7 @@ export default class AdminLogin extends Component {
         if (IDLen < 9 && PassLen < 9) {
             alert("Error");
         } else {
-            Axios.post("admin/get/", Data)
+            Axios.post("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/admin/get/", Data)
                 .then((res) => {
                     this.HelperFunctionForAxios(res);
                     console.log(res)
@@ -71,7 +71,7 @@ export default class AdminLogin extends Component {
     }
     getPassToMail(){
         alert("Login Credentials are send to Admin mail.")
-        Axios.get("Password/sendpasswordtome")
+        Axios.get("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/Password/sendpasswordtome")
         .then((res) => {
             console.log("Login Credentials are send to Admin mail.")
         })

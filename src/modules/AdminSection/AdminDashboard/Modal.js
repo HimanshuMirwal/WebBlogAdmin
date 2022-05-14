@@ -32,7 +32,7 @@ export default class Modal extends Component {
         }
         const len = this.props.match.params.id.length;
         const data = this.props.match.params.id.substring(1, len);
-        Axios.get("place/getplace/:" + data)
+        Axios.get("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/place/getplace/:" + data)
             .then((res) => {
                 this.setState({
                     TittleName: res.data.TittleName,
@@ -112,7 +112,7 @@ export default class Modal extends Component {
         if( duplicateLength === 0){
             if (count  !== 0) {
                 if (PlaceToTour.length > 0 && TourPlaceDescription.length > 0) {
-                    Axios.post("place/update", data)
+                    Axios.post("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/place/update", data)
                         .then(res => {
                             alert(res.data);
                             window.close();

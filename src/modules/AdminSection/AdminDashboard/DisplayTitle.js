@@ -18,7 +18,7 @@ export default class DisplayTittle extends Component {
 
     }
     componentDidMount() {
-            Axios.get("tittle/gettitle/")
+            Axios.get("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/tittle/gettitle/")
             .then((res) => {
                 // console.log(res)
                 this.setState({
@@ -28,7 +28,7 @@ export default class DisplayTittle extends Component {
             .catch(Err => console.log(Err));
     }
     OnClickDeleteDataForTitle(id, TitleName){
-        Axios.post("tittle/deleteTitle/"+id,{TitleName:TitleName}).then((res) => {
+        Axios.post("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/tittle/deleteTitle/"+id,{TitleName:TitleName}).then((res) => {
             console.log(res.data);
             this.OnRefreshData();
             document.getElementById("DisplayTittle").innerHTML=this.state.DivSuccess
@@ -41,7 +41,7 @@ export default class DisplayTittle extends Component {
             });
     }
     OnRefreshData(){
-        Axios.get("tittle/gettitle/").then((res) => {
+        Axios.get("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/tittle/gettitle/").then((res) => {
             // console.log(res)
             this.setState({
                 TitleArray: res.data
@@ -58,7 +58,7 @@ export default class DisplayTittle extends Component {
     }
     OnClickTitleChangeValue(value, index){
         const data = document.getElementById(value).value;
-        Axios.post("tittle/updateTittle/"+data,{id:value,TitleValue:this.state.TitleChangedValue})
+        Axios.post("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/tittle/updateTittle/"+data,{id:value,TitleValue:this.state.TitleChangedValue})
             .then((res )=> {
                 console.log(res.data+" if not then Click Refresh Button to see Results.")
                 document.getElementById("text"+index).setAttribute("value","");
