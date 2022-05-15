@@ -36,7 +36,7 @@ export default class PlaceAdder extends Component {
         this.onChangeImageText = this.onChangeImageText.bind(this);
     }
     componentDidMount() {
-        Axios.get("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/tittle/gettitle/")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/tittle/gettitle/")
             .then(
                 (result) => {
                     this.setState({
@@ -48,7 +48,7 @@ export default class PlaceAdder extends Component {
                     console.log(error);
                 }
             )
-        Axios.get("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/subtittle/getsubtitle/")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/subtittle/getsubtitle/")
             .then((res) => {
                 // console.log(res)
                 this.setState({
@@ -68,7 +68,7 @@ export default class PlaceAdder extends Component {
         document.getElementById("DisplayImage" + index).src = event.target.value;
     }
     OnClickToRefreshData() {
-        Axios.get("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/tittle/gettitle/")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/tittle/gettitle/")
             .then(
                 (result) => {
                     this.setState({
@@ -80,7 +80,7 @@ export default class PlaceAdder extends Component {
                     console.log(error);
                 }
             )
-        Axios.get("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/subtittle/getsubtitle/")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/subtittle/getsubtitle/")
             .then((res) => {
                 // console.log(res)
                 this.setState({
@@ -138,7 +138,7 @@ export default class PlaceAdder extends Component {
             console.log(count);
             if (count !== 0) {
                 if (PlaceToTour.length > 0 && TourPlaceDescription.length > 0) {
-                    Axios.post("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/place/add/", data)
+                    Axios.post("https://obscure-lake-21900.herokuapp.com/place/add/", data)
                         .then(res => {
                             console.log(res.data);
                             document.getElementById("PlaceAdder").innerHTML = this.state.DivSuccess

@@ -16,7 +16,7 @@ export default class NoticeDisplay extends Component {
         this.RefreshData = this.RefreshData.bind(this);
     }
     componentDidMount(){
-        Axios.get("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/notice/getnotice")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/notice/getnotice")
         .then(res=>{
             console.log(res.data)
             this.setState({
@@ -28,7 +28,7 @@ export default class NoticeDisplay extends Component {
         })
     }
     RefreshData(){
-        Axios.get("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/notice/getnotice")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/notice/getnotice")
         .then(res=>{
             console.log(res.data)
             this.setState({
@@ -52,7 +52,7 @@ export default class NoticeDisplay extends Component {
         })
     }
       OnClickToDeleteNotice(id){
-            Axios.post("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/notice/deletenotice/"+id)
+            Axios.post("https://obscure-lake-21900.herokuapp.com/notice/deletenotice/"+id)
             .then(res=>{
             console.log(res.data);
             this.RefreshData();

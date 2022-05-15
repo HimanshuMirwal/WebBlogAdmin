@@ -19,7 +19,7 @@ export default class SubTitleAdder extends Component {
         this.OnClickToRefreshData = this.OnClickToRefreshData.bind(this);
     }
     componentDidMount() {
-        Axios.get("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/tittle/gettitle/")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/tittle/gettitle/")
             .then(
                 (result) => {
                     this.setState({
@@ -33,7 +33,7 @@ export default class SubTitleAdder extends Component {
             )
     }
     OnClickToRefreshData() {
-        Axios.get("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/tittle/gettitle/")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/tittle/gettitle/")
             .then(
                 (result) => {
                     this.setState({
@@ -63,7 +63,7 @@ export default class SubTitleAdder extends Component {
             const DataLenght = Data.length;
             const TitleValue = this.state.MainSelectedData;
             if(DataLenght > 0){
-                Axios.post("https://cors-anywhere.herokuapp.com/https://obscure-lake-21900.herokuapp.com/subtittle/submit",{state:Data,TittleName:TitleValue})
+                Axios.post("https://obscure-lake-21900.herokuapp.com/subtittle/submit",{state:Data,TittleName:TitleValue})
                 .then(res=>{
                     console.log(res.data)
                     document.getElementById("subtittleAdder").innerHTML=this.state.DivSuccess
