@@ -23,7 +23,7 @@ export default class TitleAdder extends Component {
         const Data = this.state.MainTitleData;
         const DataLen = Data.length;
         if(DataLen > 0){
-            Axios.post("https://obscure-lake-21900.herokuapp.com/tittle/send",{TittleName:Data})
+            Axios.post("http://localhost:5000/tittle/send",{TittleName:Data})
             .then(res=>{
                 console.log(res.data)
                 document.getElementById("TittleAdder").innerHTML=this.state.DivSuccess

@@ -15,7 +15,7 @@ export default class DisplayPassword extends Component {
     }
 
     componentDidMount() {
-        axios.get("https://obscure-lake-21900.herokuapp.com/Password/getPassword")
+        axios.get("http://localhost:5000/Password/getPassword")
             .then(res =>
                 // console.log(res.data)
                 this.setState({
@@ -32,9 +32,9 @@ export default class DisplayPassword extends Component {
             PASS: this.state.Pass,
             SERVERID:this.state.ServerID,
         }
-            axios.post("https://obscure-lake-21900.herokuapp.com/Password/UpdatePassword", data)
+            axios.post("http://localhost:5000/Password/UpdatePassword", data)
                 .then(res => {
-                    axios.get("https://obscure-lake-21900.herokuapp.com/Password/getPassword")
+                    axios.get("http://localhost:5000/Password/getPassword")
                         .then(val =>{
                             this.setState({
                                 ID: val.data[0].idAdmin,

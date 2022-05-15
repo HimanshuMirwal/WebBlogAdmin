@@ -18,7 +18,7 @@ export default class DisplayFeedback extends Component {
     }
     
     componentDidMount() {
-        axios.get("https://obscure-lake-21900.herokuapp.com/feedback/getfeedback")
+        axios.get("http://localhost:5000/feedback/getfeedback")
             .then(res =>
                 this.setState({
                     FeedbackArray: res.data
@@ -29,7 +29,7 @@ export default class DisplayFeedback extends Component {
     onClickFunction(EmailRecepient, Name, Feedback, index) {
         const data = this.state.ReplyValue.length;
         if(data > 0){
-        axios.post("https://obscure-lake-21900.herokuapp.com/feedback/replyfeedback/", { EmailRecepient: EmailRecepient, message: this.state.ReplyValue, NameOfRecepient: Name,FeedbackMessage:Feedback })
+        axios.post("http://localhost:5000/feedback/replyfeedback/", { EmailRecepient: EmailRecepient, message: this.state.ReplyValue, NameOfRecepient: Name,FeedbackMessage:Feedback })
             .then(res => {
                 console.log(res.data);
                 document.getElementById("DisplayFedback").innerHTML=this.state.DivSuccessUpdate  
@@ -46,10 +46,10 @@ export default class DisplayFeedback extends Component {
     }
     
     OnDeleteFeedback(id) {
-        axios.post("https://obscure-lake-21900.herokuapp.com/feedback/deletefeedback/" + id)
+        axios.post("http://localhost:5000/feedback/deletefeedback/" + id)
             .then(res => {
                 console.log(res.data)
-                axios.get("https://obscure-lake-21900.herokuapp.com/feedback/getfeedback")
+                axios.get("http://localhost:5000/feedback/getfeedback")
                     .then(res =>
                         this.setState({
                             FeedbackArray: res.data

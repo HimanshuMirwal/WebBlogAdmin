@@ -36,7 +36,7 @@ export default class PlaceAdder extends Component {
         this.onChangeImageText = this.onChangeImageText.bind(this);
     }
     componentDidMount() {
-        Axios.get("https://obscure-lake-21900.herokuapp.com/tittle/gettitle/")
+        Axios.get("http://localhost:5000/tittle/gettitle/")
             .then(
                 (result) => {
                     this.setState({
@@ -48,7 +48,7 @@ export default class PlaceAdder extends Component {
                     console.log(error);
                 }
             )
-        Axios.get("https://obscure-lake-21900.herokuapp.com/subtittle/getsubtitle/")
+        Axios.get("http://localhost:5000/subtittle/getsubtitle/")
             .then((res) => {
                 // console.log(res)
                 this.setState({
@@ -68,7 +68,7 @@ export default class PlaceAdder extends Component {
         document.getElementById("DisplayImage" + index).src = event.target.value;
     }
     OnClickToRefreshData() {
-        Axios.get("https://obscure-lake-21900.herokuapp.com/tittle/gettitle/")
+        Axios.get("http://localhost:5000/tittle/gettitle/")
             .then(
                 (result) => {
                     this.setState({
@@ -80,7 +80,7 @@ export default class PlaceAdder extends Component {
                     console.log(error);
                 }
             )
-        Axios.get("https://obscure-lake-21900.herokuapp.com/subtittle/getsubtitle/")
+        Axios.get("http://localhost:5000/subtittle/getsubtitle/")
             .then((res) => {
                 // console.log(res)
                 this.setState({
@@ -138,7 +138,7 @@ export default class PlaceAdder extends Component {
             console.log(count);
             if (count !== 0) {
                 if (PlaceToTour.length > 0 && TourPlaceDescription.length > 0) {
-                    Axios.post("https://obscure-lake-21900.herokuapp.com/place/add/", data)
+                    Axios.post("http://localhost:5000/place/add/", data)
                         .then(res => {
                             console.log(res.data);
                             document.getElementById("PlaceAdder").innerHTML = this.state.DivSuccess

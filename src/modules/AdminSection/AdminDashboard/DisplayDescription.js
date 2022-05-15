@@ -15,7 +15,7 @@ export default class DisplayDescription extends Component {
         this.OnRefreshData = this.OnRefreshData.bind(this);
     }
     componentDidMount() {
-        Axios.get("https://obscure-lake-21900.herokuapp.com/place/getplace/")
+        Axios.get("http://localhost:5000/place/getplace/")
             .then((res) => {
                 console.log(res.data);
                 this.setState({
@@ -25,7 +25,7 @@ export default class DisplayDescription extends Component {
     }
     
     OnRefreshData(){
-        Axios.get("https://obscure-lake-21900.herokuapp.com/place/getplace/")
+        Axios.get("http://localhost:5000/place/getplace/")
         .then((res) => {
             console.log(res.data);
             this.setState({
@@ -34,7 +34,7 @@ export default class DisplayDescription extends Component {
         }).catch(err => alert(err));
     }
     OnClickDeleteDescriptionData(id) {
-        Axios.post("https://obscure-lake-21900.herokuapp.com/place/delete/" + id)
+        Axios.post("http://localhost:5000/place/delete/" + id)
             .then(res => {
                 console.log(res.data+" Click Refresh Button to see Results.")
                 this.OnRefreshData()
