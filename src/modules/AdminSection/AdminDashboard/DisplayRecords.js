@@ -21,7 +21,7 @@ export default class DisplayRecords extends Component {
         this.OnRefreshData = this.OnRefreshData.bind(this);
     }
     componentDidMount() {
-        Axios.get("http://localhost:5000/place/getplace/")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/place/getplace/")
             .then((res) => {
                 console.log(res.data);
                 this.setState({
@@ -29,7 +29,7 @@ export default class DisplayRecords extends Component {
                 })
             }).catch(err => alert(err));
 
-        Axios.get("http://localhost:5000/subtittle/getsubtitle/")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/subtittle/getsubtitle/")
             .then((res) => {
                 // console.log(res)
                 this.setState({
@@ -37,7 +37,7 @@ export default class DisplayRecords extends Component {
                 })
             })
             .catch(Err => console.log(Err));
-            Axios.get("http://localhost:5000/tittle/gettitle/")
+            Axios.get("https://obscure-lake-21900.herokuapp.com/tittle/gettitle/")
             .then((res) => {
                 // console.log(res)
                 this.setState({
@@ -47,7 +47,7 @@ export default class DisplayRecords extends Component {
             .catch(Err => console.log(Err));
     }
     OnClickDeleteDataForTitle(id, TitleName){
-        Axios.post("http://localhost:5000/tittle/deleteTitle/"+id,{TitleName:TitleName}).then((res) => {
+        Axios.post("https://obscure-lake-21900.herokuapp.com/tittle/deleteTitle/"+id,{TitleName:TitleName}).then((res) => {
             alert(res.data);
             document.getElementById("DisplayRecords").innerHTML=this.state.DivSuccess
         })
@@ -55,7 +55,7 @@ export default class DisplayRecords extends Component {
         this.OnRefreshData();
     }
     OnRefreshData(){
-        Axios.get("http://localhost:5000/place/getplace/")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/place/getplace/")
             .then((res) => {
                 console.log(res.data);
                 this.setState({
@@ -63,7 +63,7 @@ export default class DisplayRecords extends Component {
                 })
             }).catch(err => alert(err));
 
-        Axios.get("http://localhost:5000/subtittle/getsubtitle/")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/subtittle/getsubtitle/")
             .then((res) => {
                 // console.log(res)
                 this.setState({
@@ -71,7 +71,7 @@ export default class DisplayRecords extends Component {
                 })
             })
             .catch(Err => console.log(Err));
-        Axios.get("http://localhost:5000/tittle/gettitle/").then((res) => {
+        Axios.get("https://obscure-lake-21900.herokuapp.com/tittle/gettitle/").then((res) => {
             // console.log(res)
             this.setState({
                 TitleArray: res.data
@@ -80,14 +80,14 @@ export default class DisplayRecords extends Component {
         .catch(Err => console.log(Err));
     }
     OnClickDeleteData(id) {
-        Axios.post("http://localhost:5000/place/delete/" + id)
+        Axios.post("https://obscure-lake-21900.herokuapp.com/place/delete/" + id)
             .then(res => {
                 console.log(res.data+" Click Refresh Button to see Results.");
                 document.getElementById("DisplayRecords").innerHTML=this.state.DivSuccess
             })
             .catch(Err => console.log(Err));
 
-        Axios.get("http://localhost:5000/place/getplace/")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/place/getplace/")
             .then((res) => {
                 console.log(res.data);
                 this.setState({
@@ -97,14 +97,14 @@ export default class DisplayRecords extends Component {
             this.OnRefreshData();
     }
     OnClickDeleteDataForSubtitle(value, NameOfSubtitle) {
-        Axios.post("http://localhost:5000/subtittle/delete/" + value,{NameOfSubtitle:NameOfSubtitle})
+        Axios.post("https://obscure-lake-21900.herokuapp.com/subtittle/delete/" + value,{NameOfSubtitle:NameOfSubtitle})
             .then(res => {
                 console.log(res.data+" Click Refresh Button to see Results.")
                 document.getElementById("DisplayRecords").innerHTML=this.state.DivSuccess
             })
             .catch(Err => console.log(Err));
 
-        Axios.get("http://localhost:5000/subtittle/getsubtitle/")
+        Axios.get("https://obscure-lake-21900.herokuapp.com/subtittle/getsubtitle/")
             .then((res) => {
                 console.log(res.data);
                 this.setState({
@@ -122,11 +122,11 @@ export default class DisplayRecords extends Component {
     }
     OnClickSubtitleChangeValue(value){
         const data = document.getElementById(value).value;
-        Axios.post("http://localhost:5000/subtittle/update/" + value,{SubTitleValue:this.state.SubtitleChangedValue})
+        Axios.post("https://obscure-lake-21900.herokuapp.com/subtittle/update/" + value,{SubTitleValue:this.state.SubtitleChangedValue})
             .then((res )=> {
                 console.log(res.data+" if not then Click Refresh Button to see Results.")
                 this.OnRefreshData();
-                Axios.post("http://localhost:5000/place/updateSubtitle/" + this.state.SubtitleChangedValue,{DataToSend:data})
+                Axios.post("https://obscure-lake-21900.herokuapp.com/place/updateSubtitle/" + this.state.SubtitleChangedValue,{DataToSend:data})
                 .then(res => console.log(res.data))
                 .catch(Err=>console.log(Err));
                 document.getElementById("DisplayRecords").innerHTML=this.state.DivSuccessUpdate

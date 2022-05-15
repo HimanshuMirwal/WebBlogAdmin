@@ -32,9 +32,9 @@ export default class Notice extends Component {
             const NoticeLink = this.state.NoticeLink;
             const Notice = this.state.Notice;
             const NoticeLength = Notice.length;
-            // http://localhost:5000/notice/postnotice
+            // https://obscure-lake-21900.herokuapp.com/notice/postnotice
             if(NoticeLength > 0){
-                Axios.post("http://localhost:5000/notice/postnotice",{NoticeLink:NoticeLink,Notice:Notice})
+                Axios.post("https://obscure-lake-21900.herokuapp.com/notice/postnotice",{NoticeLink:NoticeLink,Notice:Notice})
                 .then(res=>{
                     console.log(res.data)
                     document.getElementById("NoticeAdder").innerHTML=this.state.DivSuccess
