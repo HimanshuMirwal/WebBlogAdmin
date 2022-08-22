@@ -49,7 +49,7 @@ export default class TitleAdder extends Component {
                     <h3>Add Title</h3>
                     <form action="" method="POST">
                         <div className="form-group">
-                            <label>Subject-name (like tour-travels, cooking etc.)</label>
+                            <label>Subject-name like programming</label>
                             <input type="text" onChange={(e)=>this.onChangeTitle(e)} value={this.state.MainTitleData} className="form-control" />
                         </div>
                         <button type="button" onClick={()=>this.OnClickToAddTitleData()} className="btn btn-primary" style={{ margin: "2%" }}>Submit</button>

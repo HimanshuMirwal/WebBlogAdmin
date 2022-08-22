@@ -96,7 +96,7 @@ export default class SubTitleAdder extends Component {
                    <br/>
                     <form method="post">
                         <div className="form-group" >
-                            <label >Subject-name (like tour-travels, cooking etc.)</label>
+                            <label >Subject-name (like Java, C++ etc.)</label>
                             <select className="form-control" id="TittleSelector" onChange={(e)=>this.onChangeTitle(e)}>
                                 <option key="lklkm  qlkml">.......Click here to Choose......</option>
                                 {

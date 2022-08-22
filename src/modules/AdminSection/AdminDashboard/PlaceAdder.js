@@ -216,7 +216,7 @@ export default class PlaceAdder extends Component {
                     </div>
                     <form method="POST">
                         <div className="form-group">
-                            <label>Subject-name (like tour-travels, cooking etc.)</label>
+                            <label>Subject-name (like programming, databases etc.)</label>
                             <select className="form-control" id="titleDropdow" name="TittleName" onChange={(e) => { this.onChangeSubTitle(e); this.OnChangeSelectedTitle(e) }}>
                                 <option key="lklkm  qlkml" >.......Click here to Choose......</option>
                                 {
@@ -225,7 +225,7 @@ export default class PlaceAdder extends Component {
                                     })
                                 }
                             </select>
-                            <label>Sub-title(like tour-travels=Haryana)</label>
+                            <label>Sub-title(like java, mysql)</label>
                             <select className="form-control" id="SubTitleDropdow" name="state" onChange={(e) => this.OnChangeSelectedSubTitle(e)} >
                                 <option key="lklkm  qlkml">.......Click here to Choose......</option>
                                 {
@@ -234,12 +234,14 @@ export default class PlaceAdder extends Component {
                                     })
                                 }
                             </select>
-                            <label>city-name</label>
+                            <label>optional Title</label>
                             <input type="text" name="city" placeholder="optional" value={this.state.city} onChange={(e) => this.OnChangeCity(e)} className="form-control" />
-                            <label>place-name</label>
+                            <label>major title</label>
                             <input type="text" name="TourPlace" value={this.state.TourPlace} onChange={(e) => this.OnChangeTourPlace(e)} className="form-control" />
-                            <label>place-description</label>
+                            <label>description <br/>Heading Tag 
+                            paragraph tags</label>
                             <textarea rows="15" name="TourPlaceDescription" value={this.state.TourPlaceDescription} onChange={(e) => this.OnChangeTourPlaceDescription(e)} className="form-control" >
+                                
                             </textarea>
                             {/* <label>Images</label>
                             <input type="file" id="FileToUpload" class="form-control" multiple onChange={this.onChangeHandler} /> */}
